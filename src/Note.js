@@ -8,29 +8,31 @@ class Note extends Component {
                     id : 0 ,
                     task : ''}
             }
-        this.handleChange = this.handleChange.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)        
-        this.generateNewId = this.generateNewId.bind(this)        
     }
-    generateNewId(){
-        var id;
-        return id = this.state.notes.id++;
-    }
-    componentWillMount() {
-       this.setState({notes : { id : this.generateNewId(), task : ""}})
-    }
-    handleSubmit(event){
 
-    }
-    handleChange(event){
-        this.setState({notes : event.target.value})
-    }
+
     render(){
         return (
-            <form className = "note" onSubmit={this.handleSubmit}>
-                <input type="text" value={this.state.notes} onChange = {this.handleChange} />
-            </form>
+           <div></div>
         )
     }
 }
 export default Note ;
+
+
+
+class Notes extends Component{
+    allNotes(note){
+       return  <li className="note" key={note.key}>{note.task}</li>
+    }
+
+    render(){
+        var notes = this.props.notes
+        var listedNotes =  notes.map(this.allNotes)
+        return(
+            <ul className="notes">
+            {listedNotes}
+            </ul>
+        )
+    }
+}
